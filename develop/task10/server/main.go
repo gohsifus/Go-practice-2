@@ -25,10 +25,10 @@ func handleClient(conn net.Conn) {
 
 		readLen, err := conn.Read(buf) // читаем из сокета
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("err" + err.Error())
 			break
 		}
 
-		conn.Write(append([]byte("ok"), buf[:readLen]...)) // пишем в сокет
+		conn.Write(append([]byte("ok\n"), buf[:readLen]...)) // пишем в сокет
 	}
 }
