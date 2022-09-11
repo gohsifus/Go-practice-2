@@ -1,0 +1,6 @@
+INFO: 2022/09/10 23:25:14 start server
+INFO: 2022/09/10 23:25:17 Запрос: /create_event
+INFO: 2022/09/10 23:25:18 Запрос: /create_event
+INFO: 2022/09/10 23:25:20 Запрос: /events_for_day?from=2022-09-09&to=2022-09-09
+INFO: 2022/09/10 23:25:24 Запрос: /events_for_day?from=2022-09kmfvkf&to=2022-09-09
+ERR: 2022/09/10 23:25:24 "from" not equal "to" or empty
