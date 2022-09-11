@@ -11,13 +11,12 @@ import (
 
 const layout = "2006-01-02"
 
-var incorrectData = errors.New("incorrect data: ")
-
-//Calendar Сервис для управления событиями в календаре
+//Calendar Реализация сервиса для управления событиями
 type Calendar struct {
 	repository repository.EventRepo
 }
 
+//NewCalendar вернет календарь - реализацию сервиса для работы с событиями
 func NewCalendar(repo repository.EventRepo) Calendar {
 	return Calendar{
 		repository: repo,
@@ -30,7 +29,6 @@ func (c Calendar) CreateEvent(date, name, description string) (*entity.Event, er
 		сюда передаются необработанные параметры в виде строк.
 		Handlers не должны заниматься преобразованием данных.
 	*/
-
 	d, err := time.Parse(layout, date)
 	if err != nil {
 		return nil, errs.New(err, errs.IncorrectDataErr)
@@ -75,7 +73,7 @@ func (c Calendar) UpdateEvent(id, date, name, description string) error {
 
 func (c Calendar) GetEventsForDay(from, to string) ([]entity.Event, error) {
 	if (from == "" || to == "") || from != to {
-		return nil, errs.New(errors.New("\"from\" not equal \"to\" or empty"), errs.IncorrectDataErr)
+		return nil, errs.New(errors.New("\"from\" not equal \"to\" or empty"), errs.BusinessLogicErr)
 	}
 
 	day, err := time.Parse(layout, to)

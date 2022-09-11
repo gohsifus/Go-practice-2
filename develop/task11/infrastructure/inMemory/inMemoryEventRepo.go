@@ -22,6 +22,10 @@ func NewInMemoryRepo() *inMemoryEventRepo {
 }
 
 func (im *inMemoryEventRepo) Create(event *entity.Event) (*entity.Event, error) {
+	if !event.Validate() {
+		return nil, errs.New(entity.ValidationFailed, errs.IncorrectDataErr)
+	}
+
 	im.Lock()
 	event.Id = im.currentId
 	im.store[event.Id] = *event
@@ -66,6 +70,9 @@ func (im *inMemoryEventRepo) Delete(id int) error {
 
 func (im inMemoryEventRepo) GetEventsByDateInterval(from, to time.Time) ([]entity.Event, error) {
 	events := []entity.Event{}
+	if from.After(to) {
+		return nil, errors.New("from must be before to")
+	}
 
 	im.RLock()
 	for _, v := range im.store {

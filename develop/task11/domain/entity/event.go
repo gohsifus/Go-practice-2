@@ -2,8 +2,11 @@ package entity
 
 import (
 	"encoding/json"
+	"errors"
 	"time"
 )
+
+var ValidationFailed = errors.New("validation failed")
 
 type Event struct {
 	Id          int       `json:"id"`

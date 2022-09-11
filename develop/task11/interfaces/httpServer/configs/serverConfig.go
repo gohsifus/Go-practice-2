@@ -6,6 +6,7 @@ import (
 	"task11/errs"
 )
 
+//ServerConfig конфигурация сервера
 type ServerConfig struct {
 	Host      string `json:"host"`
 	Port      string `json:"port"`
@@ -16,6 +17,7 @@ func NewConfig() *ServerConfig {
 	return &ServerConfig{}
 }
 
+//LoadConfigs загрузит логи из json файла
 func (s *ServerConfig) LoadConfigs(path string) error {
 	data, err := os.ReadFile(path)
 	if err != nil {

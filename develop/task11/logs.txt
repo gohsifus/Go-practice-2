@@ -1,6 +1,10 @@
-INFO: 2022/09/10 23:25:14 start server
-INFO: 2022/09/10 23:25:17 Запрос: /create_event
-INFO: 2022/09/10 23:25:18 Запрос: /create_event
-INFO: 2022/09/10 23:25:20 Запрос: /events_for_day?from=2022-09-09&to=2022-09-09
-INFO: 2022/09/10 23:25:24 Запрос: /events_for_day?from=2022-09kmfvkf&to=2022-09-09
-ERR: 2022/09/10 23:25:24 "from" not equal "to" or empty
+INFO: 2022/09/11 20:56:32 start server
+INFO: 2022/09/11 20:56:36 Запрос: /create_event
+INFO: 2022/09/11 20:56:37 Запрос: /create_event
+INFO: 2022/09/11 20:56:41 Запрос: /events_for_day?from=2022-09-09&to=2022-09-09
+INFO: 2022/09/11 20:56:47 Запрос: /events_for_day?from=2022-09-09&to=2022-07-09
+09
+INFO: 2022/09/11 17:10:49 Запрос: /delete_event
+INFO: 2022/09/11 17:10:53 Запрос: /events_for_day?from=2022-09-09&to=2022-09-09
+INFO: 2022/09/11 17:10:57 Запрос: /delete_event
+INFO: 2022/09/11 17:11:00 Запрос: /events_for_day?from=2022-09-09&to=2022-09-09
