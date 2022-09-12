@@ -9,10 +9,14 @@ import (
 )
 
 func main() {
-	repo := inMemory.NewInMemoryRepo()
+	repo, err := inMemory.NewInMemoryRepo()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
 	config := configs.NewConfig()
-	err := config.LoadConfigs("configs.json")
+	err = config.LoadConfigs("configs.json")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

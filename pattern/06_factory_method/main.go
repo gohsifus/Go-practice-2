@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//product interface
+//product interfaces
 type transport interface {
 	transfer()
 }
@@ -53,7 +53,6 @@ func (cf carFactory) Create(wheel, avgSpeed int) transport {
 }
 
 func main() {
-
 	var factories []transferFactory
 	factories = append(factories, bikeFactory{})
 	factories = append(factories, carFactory{})
@@ -61,5 +60,4 @@ func main() {
 	for _, v := range factories{
 		v.Create(4, 50).transfer()
 	}
-
 }

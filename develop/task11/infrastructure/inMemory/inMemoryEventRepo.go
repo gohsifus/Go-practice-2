@@ -14,11 +14,11 @@ type inMemoryEventRepo struct {
 	sync.RWMutex
 }
 
-func NewInMemoryRepo() *inMemoryEventRepo {
+func NewInMemoryRepo() (*inMemoryEventRepo, error) {
 	return &inMemoryEventRepo{
 		store:     make(map[int]entity.Event),
 		currentId: 0,
-	}
+	}, nil
 }
 
 func (im *inMemoryEventRepo) Create(event *entity.Event) (*entity.Event, error) {

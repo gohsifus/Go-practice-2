@@ -10,11 +10,11 @@ import (
 если один из его составляющих каналов закроется.
 
 Определение функции:
-var or func(channels ...<- chan interface{}) <- chan interface{}
+var or func(channels ...<- chan interfaces{}) <- chan interfaces{}
 
 Пример использования функции:
-	sig := func(after time.Duration) <- chan interface{} {
-	c := make(chan interface{})
+	sig := func(after time.Duration) <- chan interfaces{} {
+	c := make(chan interfaces{})
 		go func() {
 			defer close(c)
 			time.Sleep(after)

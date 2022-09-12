@@ -1,8 +1,8 @@
-INFO: 2022/09/11 20:56:32 start server
-INFO: 2022/09/11 20:56:36 Запрос: /create_event
-INFO: 2022/09/11 20:56:37 Запрос: /create_event
-INFO: 2022/09/11 20:56:41 Запрос: /events_for_day?from=2022-09-09&to=2022-09-09
-INFO: 2022/09/11 20:56:47 Запрос: /events_for_day?from=2022-09-09&to=2022-07-09
+INFO: 2022/09/11 23:30:27 start server
+INFO: 2022/09/11 23:30:31 Запрос: /create_event
+INFO: 2022/09/11 23:30:32 Запрос: /create_event
+INFO: 2022/09/11 23:30:36 Запрос: /events_for_day?from=2022-09-09&to=2022-07-09
+INFO: 2022/09/11 23:30:43 Запрос: /events_for_day?from=2022-09-09&to=2022-09-09
 09
 INFO: 2022/09/11 17:10:49 Запрос: /delete_event
 INFO: 2022/09/11 17:10:53 Запрос: /events_for_day?from=2022-09-09&to=2022-09-09
