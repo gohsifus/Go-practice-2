@@ -29,22 +29,25 @@ func (b car) transfer() {
 }
 
 //*****************************
+//Creator
 type transferFactory interface {
-	Create(wheel, avgSpeed int) transport
+	Create() transport
 }
 
+//ConcreteCreator
 type bikeFactory struct{}
 
-func (bf bikeFactory) Create(wheel, avgSpeed int) transport {
+func (bf bikeFactory) Create() transport {
 	return &bike{
 		wheel:    2,
 		avgSpeed: 30,
 	}
 }
 
+//ConcreteCreator
 type carFactory struct{}
 
-func (cf carFactory) Create(wheel, avgSpeed int) transport {
+func (cf carFactory) Create() transport {
 	return &car{
 		wheel:    4,
 		avgSpeed: 80,
@@ -58,6 +61,6 @@ func main() {
 	factories = append(factories, carFactory{})
 
 	for _, v := range factories{
-		v.Create(4, 50).transfer()
+		v.Create().transfer()
 	}
 }

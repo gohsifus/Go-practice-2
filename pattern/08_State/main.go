@@ -117,5 +117,4 @@ func main() {
 	reactor.currentState.tempUp()
 	reactor.currentState.tempDown()
 	reactor.currentState.tempDown()
-
 }
