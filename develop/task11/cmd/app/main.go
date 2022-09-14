@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 	"os"
-	"task11/infrastructure/inMemory"
-	"task11/interfaces/httpServer"
-	"task11/interfaces/httpServer/configs"
+	"task11/infrastructure/inmemory"
+	"task11/interfaces/httpserver"
+	"task11/interfaces/httpserver/configs"
 )
 
 func main() {
-	repo, err := inMemory.NewInMemoryRepo()
+	repo, err := inmemory.NewInMemoryRepo()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -22,7 +22,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	server, err := httpServer.NewServer(config, repo)
+	server, err := httpserver.NewServer(config, repo)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

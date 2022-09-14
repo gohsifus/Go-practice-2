@@ -23,6 +23,7 @@ func NewCalendar(repo repository.EventRepo) Calendar {
 	}
 }
 
+// CreateEvent ...
 func (c Calendar) CreateEvent(date, name, description string) (*entity.Event, error) {
 	/*
 		Бизнес-логика не должна зависить от сервера, поэтому
@@ -43,10 +44,12 @@ func (c Calendar) CreateEvent(date, name, description string) (*entity.Event, er
 	return c.repository.Create(event)
 }
 
+// DeleteEvent ...
 func (c Calendar) DeleteEvent(id int) error {
 	return c.repository.Delete(id)
 }
 
+// UpdateEvent ...
 func (c Calendar) UpdateEvent(id, date, name, description string) error {
 	ident, err := strconv.Atoi(id)
 	if err != nil {
@@ -71,6 +74,7 @@ func (c Calendar) UpdateEvent(id, date, name, description string) error {
 	return nil
 }
 
+// GetEventsForDay ...
 func (c Calendar) GetEventsForDay(from, to string) ([]entity.Event, error) {
 	if (from == "" || to == "") || from != to {
 		return nil, errs.New(errors.New("\"from\" not equal \"to\" or empty"), errs.BusinessLogicErr)
@@ -84,6 +88,7 @@ func (c Calendar) GetEventsForDay(from, to string) ([]entity.Event, error) {
 	return c.repository.GetEventsByDateInterval(day, day)
 }
 
+//GetEventsForWeek ...
 func (c Calendar) GetEventsForWeek(from, to string) ([]entity.Event, error) {
 	if from == "" || to == "" {
 		return nil, errs.New(errors.New("\"from\" or \"to\" is empty"), errs.IncorrectDataErr)
@@ -113,6 +118,7 @@ func (c Calendar) GetEventsForWeek(from, to string) ([]entity.Event, error) {
 	return c.repository.GetEventsByDateInterval(fromDate, toDate)
 }
 
+// GetEventsForMonth ...
 func (c Calendar) GetEventsForMonth(dayFromTargetMonth string) ([]entity.Event, error) {
 	if dayFromTargetMonth == "" {
 		return nil, errs.New(errors.New("\"date\" must be not empty"), errs.IncorrectDataErr)

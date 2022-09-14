@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// EventRepo интерфейс репозитория для работы с событиями
 type EventRepo interface {
 	Create(event *entity.Event) (*entity.Event, error)
 	Update(id int, event *entity.Event) error

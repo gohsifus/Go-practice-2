@@ -1,4 +1,4 @@
-package inPostgres
+package inpostgres
 
 import (
 	"fmt"

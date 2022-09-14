@@ -6,13 +6,14 @@ import (
 	"net/http/httptest"
 	"net/url"
 	"strings"
-	"task11/infrastructure/inMemory"
+	"task11/infrastructure/inmemory"
 	"task11/service"
 	"testing"
 )
 
 func TestHandler_Hello(t *testing.T) {
-	handler := http.HandlerFunc(NewHandler(service.NewService(inMemory.NewInMemoryRepo())).Hello)
+	repo, _ := inmemory.NewInMemoryRepo()
+	handler := http.HandlerFunc(NewHandler(service.NewService(repo)).Hello)
 
 	mockW := httptest.NewRecorder()
 	mockR, _ := http.NewRequest("GET", "/", nil)
@@ -24,7 +25,8 @@ func TestHandler_Hello(t *testing.T) {
 }
 
 func TestHandler_CreateEvent(t *testing.T) {
-	handler := http.HandlerFunc(NewHandler(service.NewService(inMemory.NewInMemoryRepo())).CreateEvent)
+	repo, _ := inmemory.NewInMemoryRepo()
+	handler := http.HandlerFunc(NewHandler(service.NewService(repo)).CreateEvent)
 
 	testTable := []struct {
 		name       string
@@ -71,7 +73,8 @@ func TestHandler_CreateEvent(t *testing.T) {
 }
 
 func TestHandler_GetEventsForDay(t *testing.T) {
-	handler := http.HandlerFunc(NewHandler(service.NewService(inMemory.NewInMemoryRepo())).GetEventsForDay)
+	repo, _ := inmemory.NewInMemoryRepo()
+	handler := http.HandlerFunc(NewHandler(service.NewService(repo)).GetEventsForDay)
 
 	testTable := []struct {
 		name       string
@@ -117,7 +120,8 @@ func TestHandler_GetEventsForDay(t *testing.T) {
 }
 
 func TestHandler_DeleteEvent(t *testing.T) {
-	handler := http.HandlerFunc(NewHandler(service.NewService(inMemory.NewInMemoryRepo())).DeleteEvent)
+	repo, _ := inmemory.NewInMemoryRepo()
+	handler := http.HandlerFunc(NewHandler(service.NewService(repo)).DeleteEvent)
 
 	testTable := []struct {
 		name       string

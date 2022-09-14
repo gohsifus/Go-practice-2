@@ -21,6 +21,7 @@ type Service struct{
 	Event
 }
 
+// NewService ...
 func NewService(eventRepo repository.EventRepo) *Service{
 	return &Service{
 		NewCalendar(eventRepo),

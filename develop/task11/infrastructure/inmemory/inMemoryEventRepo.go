@@ -1,4 +1,4 @@
-package inMemory
+package inmemory
 
 import (
 	"errors"
@@ -8,34 +8,38 @@ import (
 )
 import "task11/domain/entity"
 
-type inMemoryEventRepo struct {
+// MemoryEventRepo реализация репозитория для хранения в памяти
+type MemoryEventRepo struct {
 	store     map[int]entity.Event
-	currentId int
+	currentID int
 	sync.RWMutex
 }
 
-func NewInMemoryRepo() (*inMemoryEventRepo, error) {
-	return &inMemoryEventRepo{
+// NewInMemoryRepo вернет реализацию репозитория для хранения в памяти
+func NewInMemoryRepo() (*MemoryEventRepo, error) {
+	return &MemoryEventRepo{
 		store:     make(map[int]entity.Event),
-		currentId: 0,
+		currentID: 0,
 	}, nil
 }
 
-func (im *inMemoryEventRepo) Create(event *entity.Event) (*entity.Event, error) {
+// Create ...
+func (im *MemoryEventRepo) Create(event *entity.Event) (*entity.Event, error) {
 	if !event.Validate() {
-		return nil, errs.New(entity.ValidationFailed, errs.IncorrectDataErr)
+		return nil, errs.New(entity.ErrValidationFailed, errs.IncorrectDataErr)
 	}
 
 	im.Lock()
-	event.Id = im.currentId
-	im.store[event.Id] = *event
-	im.currentId++
+	event.ID = im.currentID
+	im.store[event.ID] = *event
+	im.currentID++
 	im.Unlock()
 
 	return event, nil
 }
 
-func (im *inMemoryEventRepo) Update(id int, event *entity.Event) error {
+// Update ...
+func (im *MemoryEventRepo) Update(id int, event *entity.Event) error {
 	im.Lock()
 	old, ok := im.store[id]
 	if ok {
@@ -60,7 +64,8 @@ func (im *inMemoryEventRepo) Update(id int, event *entity.Event) error {
 	return nil
 }
 
-func (im *inMemoryEventRepo) Delete(id int) error {
+// Delete ...
+func (im *MemoryEventRepo) Delete(id int) error {
 	im.Lock()
 	delete(im.store, id)
 	im.Unlock()
@@ -68,7 +73,8 @@ func (im *inMemoryEventRepo) Delete(id int) error {
 	return nil
 }
 
-func (im inMemoryEventRepo) GetEventsByDateInterval(from, to time.Time) ([]entity.Event, error) {
+// GetEventsByDateInterval ...
+func (im *MemoryEventRepo) GetEventsByDateInterval(from, to time.Time) ([]entity.Event, error) {
 	events := []entity.Event{}
 	if from.After(to) {
 		return nil, errors.New("from must be before to")

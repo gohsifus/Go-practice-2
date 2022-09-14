@@ -1,16 +1,17 @@
-package httpServer
+package httpserver
 
 import (
 	"fmt"
 	"net/http"
 	"task11/domain/repository"
-	"task11/interfaces/httpServer/configs"
-	"task11/interfaces/httpServer/handler"
+	"task11/interfaces/httpserver/configs"
+	"task11/interfaces/httpserver/handler"
 	"task11/logger"
 	"task11/middleware"
 	"task11/service"
 )
 
+// Server http server
 type Server struct {
 	handler handler.Handler
 	mux     *http.ServeMux
@@ -18,6 +19,7 @@ type Server struct {
 	log     *logger.Log
 }
 
+// NewServer ...
 func NewServer(config *configs.ServerConfig, eventRepo repository.EventRepo) (*Server, error) {
 	h := handler.NewHandler(service.NewService(eventRepo))
 	mux := http.NewServeMux()
@@ -34,6 +36,7 @@ func NewServer(config *configs.ServerConfig, eventRepo repository.EventRepo) (*S
 	}, nil
 }
 
+// Start запуск сервера
 func (s Server) Start() {
 	fmt.Println("start server")
 	s.log.Info("start server")
@@ -44,6 +47,7 @@ func (s Server) Start() {
 	http.ListenAndServe(addr, s.mux)
 }
 
+// ConfigureServer сконфигурирует сервер, назначив обработчики
 func (s Server) ConfigureServer() {
 	s.mux.Handle("/", middleware.Logging(http.HandlerFunc(s.handler.Hello), s.log))
 	s.mux.Handle("/create_event", middleware.Logging(http.HandlerFunc(s.handler.CreateEvent), s.log))

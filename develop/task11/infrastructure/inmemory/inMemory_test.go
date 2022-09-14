@@ -1,4 +1,4 @@
-package inMemory
+package inmemory
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -8,7 +8,7 @@ import (
 )
 
 func TestInMemoryEventRepo_Create(t *testing.T) {
-	im := NewInMemoryRepo()
+	im, _ := NewInMemoryRepo()
 
 	newEvent := entity.NewEvent(time.Now(), "asd", "asd")
 
@@ -19,7 +19,7 @@ func TestInMemoryEventRepo_Create(t *testing.T) {
 }
 
 func TestInMemoryEventRepo_Delete(t *testing.T) {
-	im := NewInMemoryRepo()
+	im, _ := NewInMemoryRepo()
 
 	im.store[0] = *entity.NewEvent(time.Now(), "asd", "asd")
 
@@ -29,7 +29,7 @@ func TestInMemoryEventRepo_Delete(t *testing.T) {
 }
 
 func TestInMemoryEventRepo_Update(t *testing.T) {
-	im := NewInMemoryRepo()
+	im, _ := NewInMemoryRepo()
 
 	im.store[0] = *entity.NewEvent(time.Now(), "asd", "asd")
 
@@ -41,7 +41,7 @@ func TestInMemoryEventRepo_Update(t *testing.T) {
 }
 
 func TestInMemoryEventRepo_GetEventsByDateInterval(t *testing.T) {
-	im := NewInMemoryRepo()
+	im, _ := NewInMemoryRepo()
 
 	im.store[0] = *entity.NewEvent(strToTime("2022-09-09"), "asd", "asd")
 	im.store[1] = *entity.NewEvent(strToTime("2022-09-10"), "qwe", "qwe")

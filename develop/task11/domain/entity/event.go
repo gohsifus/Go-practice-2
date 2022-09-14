@@ -6,15 +6,18 @@ import (
 	"time"
 )
 
-var ValidationFailed = errors.New("validation failed")
+// ErrValidationFailed ...
+var ErrValidationFailed = errors.New("validation failed")
 
+// Event ...
 type Event struct {
-	Id          int       `json:"id"`
+	ID          int       `json:"id"`
 	Date        time.Time `json:"date"`
 	Name        string    `json:"name"`
 	Description string    `json:"description"`
 }
 
+// NewEvent создаст сущность - событие
 func NewEvent(date time.Time, name, description string) *Event {
 	return &Event{
 		Date:        date,
@@ -23,13 +26,15 @@ func NewEvent(date time.Time, name, description string) *Event {
 	}
 }
 
+// Validate провалидирует объект события
 func (e Event) Validate() bool {
-	if e.Date.IsZero() || e.Name == "" || e.Description == "" || e.Id < 0 {
+	if e.Date.IsZero() || e.Name == "" || e.Description == "" || e.ID < 0 {
 		return false
 	}
 	return true
 }
 
-func (e Event) ToJson() ([]byte, error) {
+// ToJSON ...
+func (e Event) ToJSON() ([]byte, error) {
 	return json.Marshal(e)
 }

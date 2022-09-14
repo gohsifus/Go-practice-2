@@ -9,18 +9,19 @@ import (
 	"task11/service"
 )
 
-//Handler содержит все обработчики
+// Handler содержит все обработчики
 type Handler struct {
 	service *service.Service
 }
 
+// NewHandler ...
 func NewHandler(service *service.Service) Handler {
 	return Handler{
 		service: service,
 	}
 }
 
-//response функция для формирования ответа на запрос
+// response функция для формирования ответа на запрос
 func response(w http.ResponseWriter, status int, data interface{}, success bool) {
 	w.WriteHeader(status)
 
@@ -42,10 +43,12 @@ func response(w http.ResponseWriter, status int, data interface{}, success bool)
 	w.Write(bytes)
 }
 
+// Hello ...
 func (h Handler) Hello(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello!"))
 }
 
+// CreateEvent ...
 func (h Handler) CreateEvent(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		params, err := parseParams(r)
@@ -71,6 +74,7 @@ func (h Handler) CreateEvent(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// UpdateEvent ...
 func (h Handler) UpdateEvent(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		params, err := parseParams(r)
@@ -97,6 +101,7 @@ func (h Handler) UpdateEvent(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// DeleteEvent ...
 func (h Handler) DeleteEvent(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		r.ParseForm()
@@ -119,6 +124,7 @@ func (h Handler) DeleteEvent(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// GetEventsForDay ...
 func (h Handler) GetEventsForDay(w http.ResponseWriter, r *http.Request) {
 	args := r.URL.Query()
 
@@ -132,6 +138,7 @@ func (h Handler) GetEventsForDay(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// GetEventsForWeek ...
 func (h Handler) GetEventsForWeek(w http.ResponseWriter, r *http.Request) {
 	args := r.URL.Query()
 
@@ -145,6 +152,7 @@ func (h Handler) GetEventsForWeek(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// GetEventsForMonth ...
 func (h Handler) GetEventsForMonth(w http.ResponseWriter, r *http.Request) {
 	args := r.URL.Query()
 

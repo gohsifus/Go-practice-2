@@ -6,6 +6,7 @@ import (
 	"task11/logger"
 )
 
+// Logging оборачивает запрос, позволяя добавить логирование
 func Logging(f http.Handler, logger *logger.Log) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Запрос: " + r.URL.String())
