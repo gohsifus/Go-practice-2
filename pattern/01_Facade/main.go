@@ -53,10 +53,10 @@ type orderFacade struct {
 
 //CreateOrder заявка создается с помощью одного метода
 func (o orderFacade) CreateOrder(dataForOrder string) {
-	o.validationSystem.Validate(dataForOrder)
-	o.eApi.isLegalEntity()
-	o.store.save(dataForOrder)
-	o.notifyS.sendNotify()
+	o.ValidationSystem.Validate(dataForOrder)
+	o.EApi.isLegalEntity()
+	o.Store.save(dataForOrder)
+	o.NotifyS.sendNotify()
 }
 
 func main() {
