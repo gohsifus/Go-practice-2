@@ -45,10 +45,10 @@ func (n NotificationSystem) sendNotify() {
 
 //Фасад
 type orderFacade struct {
-	store            Db
-	validationSystem ValidationSystem
-	eApi             EGRULApi
-	notifyS          NotificationSystem
+	Store            Db
+	ValidationSystem ValidationSystem
+	EApi             EGRULApi
+	NotifyS          NotificationSystem
 }
 
 //CreateOrder заявка создается с помощью одного метода
